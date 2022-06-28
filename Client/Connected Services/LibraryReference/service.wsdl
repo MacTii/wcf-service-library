@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Library" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServiceLibrary" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILibrary_GetBookById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookById" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookById_ErrorHandlerFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ServiceLibrary" name="detail" element="q1:ErrorHandler" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByTitle" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByTitle_ErrorHandlerFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/ServiceLibrary" name="detail" element="q2:ErrorHandler" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByAuthor_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByAuthor" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByAuthor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByAuthorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_GetBookByAuthor_ErrorHandlerFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/ServiceLibrary" name="detail" element="q3:ErrorHandler" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_Output_InputMessage">
+    <wsdl:part name="parameters" element="tns:Output" />
+  </wsdl:message>
+  <wsdl:message name="ILibrary_Output_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OutputResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILibrary">
+    <wsdl:operation name="GetBookById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibrary/GetBookById" message="tns:ILibrary_GetBookById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibrary/GetBookByIdResponse" message="tns:ILibrary_GetBookById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ILibrary/GetBookByIdErrorHandlerFault" name="ErrorHandlerFault" message="tns:ILibrary_GetBookById_ErrorHandlerFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibrary/GetBookByTitle" message="tns:ILibrary_GetBookByTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibrary/GetBookByTitleResponse" message="tns:ILibrary_GetBookByTitle_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ILibrary/GetBookByTitleErrorHandlerFault" name="ErrorHandlerFault" message="tns:ILibrary_GetBookByTitle_ErrorHandlerFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByAuthor">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibrary/GetBookByAuthor" message="tns:ILibrary_GetBookByAuthor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibrary/GetBookByAuthorResponse" message="tns:ILibrary_GetBookByAuthor_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ILibrary/GetBookByAuthorErrorHandlerFault" name="ErrorHandlerFault" message="tns:ILibrary_GetBookByAuthor_ErrorHandlerFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Output">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILibrary/Output" message="tns:ILibrary_Output_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILibrary/OutputResponse" message="tns:ILibrary_Output_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ILibrary" type="tns:ILibrary">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetBookById">
+      <soap:operation soapAction="http://tempuri.org/ILibrary/GetBookById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ErrorHandlerFault">
+        <soap:fault use="literal" name="ErrorHandlerFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByTitle">
+      <soap:operation soapAction="http://tempuri.org/ILibrary/GetBookByTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ErrorHandlerFault">
+        <soap:fault use="literal" name="ErrorHandlerFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookByAuthor">
+      <soap:operation soapAction="http://tempuri.org/ILibrary/GetBookByAuthor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ErrorHandlerFault">
+        <soap:fault use="literal" name="ErrorHandlerFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Output">
+      <soap:operation soapAction="http://tempuri.org/ILibrary/Output" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Library">
+    <wsdl:port name="BasicHttpBinding_ILibrary" binding="tns:BasicHttpBinding_ILibrary">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/ServiceLibrary/Library/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
